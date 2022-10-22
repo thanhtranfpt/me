@@ -1,0 +1,15 @@
+def decimalIntoBinary(decimal):
+    if decimal == 0:
+        return 0
+    binary = ''
+    while decimal > 0:
+        d = decimal%2
+        decimal = decimal//2
+        binary += str(d)
+    return int(binary[::-1])
+def binaryIntoDecimal(binary):
+    binary = str(binary)[::-1]
+    decimal = 0
+    for i in range(len(binary)):
+        decimal += int(binary[i])*(2**i)
+    return decimal

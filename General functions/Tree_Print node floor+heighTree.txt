@@ -1,0 +1,34 @@
+class Tree:
+	...
+    def heightofTree(self,p):
+        if p is None:
+            return 0
+        leftHeight = self.heightofTree(p.left)
+        rightHeight = self.heightofTree(p.right)
+        max_height = leftHeight
+        if max_height < rightHeight:
+            max_height = rightHeight
+        return max_height+1
+
+    def print_node_floor(self):
+        tmp = [self.root]
+        lst = []
+        if tmp[0] is None:
+            print('Tree is empty.')
+            return
+        k=1
+        i=0
+        while k <= self.heightofTree(self.root):
+            print('Level',k,': ',end=' ')
+            for i in tmp:
+                print(i.data,end=' ')
+                lst.append(i)
+            print()
+            for i in lst:
+                if i in tmp:
+                    if i.left is not None:
+                        tmp.append(i.left)
+                    if i.right is not None:
+                        tmp.append(i.right)
+                    tmp.remove(i)
+            k = k+1

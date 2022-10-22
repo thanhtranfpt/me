@@ -1,0 +1,29 @@
+def write_to_csv(path,one_row):
+    # one_row = ['c','de','guii','hij']
+    
+    import csv
+    
+    with open(path, 'a', encoding='UTF-8', newline='') as file_handle: #------------ EDIT TYPE OF WRITING: w = write, a = append -----------
+        writer = csv.writer(file_handle)
+        # write a row to the csv file #------ MAIN ---------
+        writer.writerow(one_row)
+
+
+
+def read_rows_csv(path):
+
+    import csv
+    
+    lines = []
+    with open(path) as file_handle:
+        file_lines = csv.reader(file_handle)
+        for line in file_lines:
+            lines.append(line)
+            
+    return lines #------------ lines = [ ['a','b','c', ...],[...], ... ] each element is a row.
+
+
+
+### example of shown in DataFrame:
+columns = {'FILM_ID': film_id, 'USER_ID': user_id, 'STAR_VOTING': star, 'DATE': date}
+pd.DataFrame.from_dict(columns)

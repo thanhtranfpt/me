@@ -1,0 +1,16 @@
+def sql_execute(database_path, one_command):
+	#------ LITE, so command must be short, simple -- INSERT 1 row at a time.
+	#--- if database not exist, it AUTO creates at database_path.
+    import sqlite3
+    sqliteConnection = sqlite3.connect(database_path)
+    cursor = sqliteConnection.cursor()
+    # execute the statement:
+    cursor.execute(one_command)
+    # commit changes:
+    sqliteConnection.commit()
+    # show results into screen:
+    ans = cursor.fetchall()
+    for i in ans:
+        print(i)
+    # close the connection:
+    sqliteConnection.close()

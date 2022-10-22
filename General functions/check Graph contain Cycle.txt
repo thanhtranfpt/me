@@ -1,0 +1,25 @@
+def containCycle(vertexList,edgeList): #ok tested: vertexList is dinstinct; edgeList is duplicate; this def uses for even not connectivity
+    listLienThong = vertexList.copy()
+    while listLienThong != []:
+        #create label:
+        label = {}
+        for vertex in vertexList:
+            label[vertex] = -1
+        #create queue:
+        queue = []
+        queue.append(listLienThong[0])
+        label[listLienThong[0]] = 0
+        listLienThong.remove(listLienThong[0])
+        #add vertex into queue:
+        for k in queue:
+            for vertex in vertexList:
+                if (k,vertex) in edgeList:
+                    if label[vertex] == 0:
+                        return True
+                    if label[vertex] == -1:
+                        queue.append(vertex)
+                        label[vertex] = 0
+                        if vertex in listLienThong:
+                            listLienThong.remove(vertex)
+            label[k] = 1
+    return False

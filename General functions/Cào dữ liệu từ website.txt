@@ -1,0 +1,49 @@
+def Cào_dữ_liệu_from_website(url):
+    #import libraries:
+    import requests
+    from bs4 import BeautifulSoup
+    import pandas as pd
+    import csv
+    #main:
+    page = requests.get(url).text
+    #now, page = whole HTML file: is a string!
+    #Create a BeautifulSoup object:
+    soup = BeautifulSoup(page, 'html.parser')
+    
+    #Pulls all instances of <a> tag:
+    artists = soup.find_all('a')
+    #Clear data of all tags:
+    for artist in artists:
+        names = artist.contents
+        fullLink = artist.get('href')
+        #print(names)
+        #print(fullLink)
+        
+        
+        
+    #Below are examples shown data with DataFrame:
+    # DON'T CARE THIS IN THIS PROBLEM, PLEASE!
+    #columns --> dataFrame
+    columns = {'col_1': [3, 2, 1, 0], 'col_2': ['a', 'b', 'c', 'd']}
+    pd.DataFrame.from_dict(columns)
+    #rows --> dataFrame
+    rows = {'row_1': [3, 2, 1, 0], 'row_2': ['a', 'b', 'c', 'd']}
+    pd.DataFrame.from_dict(rows, orient='index') #có thể thêm parameter: columns=['A', 'B', 'C', 'D'])
+    
+    # TRỰC QUAN HÓA BẰNG BIỂU ĐỒ
+    import matplotlib.pyplot as plt
+    # Plot
+    plt.plot(real_dates,buy_prices,label='Bought prices')
+    plt.plot(real_dates,sold_prices,label='Sold prices')
+    plt.title('THE GRAPH OF GOLD SOLD AND BOUGHT PRICES IN THE LAST 6 MONTHS')
+    plt.xlabel('Date')
+    plt.ylabel('Prices (Unit: 1000đ/lượng)')
+    plt.legend(loc='best')
+    plt.show()
+    
+    
+    
+    
+    #return page:
+    return page,soup
+
